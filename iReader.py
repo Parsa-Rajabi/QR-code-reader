@@ -3,12 +3,22 @@ import os
 import sys
 import PIL
 
-print 'Taking picture...'
+print 'Program Started!'
 try:
+    print 'Taking picture:'
     qr_count = len(os.listdir('qr_codes'))
+    print 'Booting System:'
     os.system('sudo fswebcam -d /dev/video'+sys.argv[1]+' -q qr_codes/qr_'+str(qr_count)+'.jpg')
     print 'Picture taken!'
 
+    picture_taken = True;
+
+except:
+    f = 0
+    print 'Picture couldn\'t be taken because', sys.exc_info()[0]
+
+
+if (picture_taken):
     print 'Scanning image...'
     f = open('qr_codes/qr_'+str(qr_count)+'.jpg','rb')
     qr = PIL.Image.open(f);
@@ -27,6 +37,3 @@ try:
             if(i!=len(codes)-1):
                 f.write('^')
         f.write('~')
-except:
-    f = 0
-    print 'Picture couldn\'t be taken because', sys.exc_info()[0]
