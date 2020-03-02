@@ -7,14 +7,13 @@ print 'Program Started!'
 try:
     print 'Taking picture:'
     qr_count = len(os.listdir('qr_codes'))
-    print 'Booting System:'
-    os.system('sudo fswebcam -d /dev/video'+sys.argv[1]+' -q qr_codes/qr_'+str(qr_count)+'.jpg')
+    print 'Booting System: with counter:', qr_count
+    os.system('sudo fswebcam -d /dev/video'+sys.argv[0]+' -q qr_codes/qr_'+str(qr_count)+'.jpg')
     print 'Picture taken!'
-
     picture_taken = True;
 
 except:
-    f = 0
+    picture_taken = False;
     print 'Picture couldn\'t be taken because', sys.exc_info()[0]
 
 
