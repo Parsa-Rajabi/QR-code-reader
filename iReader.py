@@ -5,7 +5,6 @@ import PIL
 
 print 'Taking picture...'
 try:
-    f = 1
     qr_count = len(os.listdir('qr_codes'))
     os.system('sudo fswebcam -d /dev/video'+sys.argv[1]+' -q qr_codes/qr_'+str(qr_count)+'.jpg')
     print 'Picture taken!'
@@ -28,10 +27,6 @@ try:
             if(i!=len(codes)-1):
                 f.write('^')
         f.write('~')
-
-except Exception e:
+except:
     f = 0
-    print 'Picture couldn\'t be taken because'
-    print e
-   
-    
+    print 'Picture couldn\'t be taken because', sys.exc_info()[0]
